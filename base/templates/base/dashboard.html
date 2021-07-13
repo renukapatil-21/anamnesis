@@ -1,0 +1,66 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block titlr %}Dashboard{% endblock titlr %}
+{% block msg %}
+{% if messages %}
+{% for message in messages %}
+<div {% if message.tags %} class="alert alert-{{message.tags}} alert-dismissible fade show" {% endif %}>
+    <strong>{{message}}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}
+
+{% block side %}
+<div class="col-sm-2 text-dark text-center">
+    <h4 class="my-5">Profile</h4>
+    <h5>{{full_name}}</h5>
+    {% for group in groups %}
+        <p>{{group.name}}</p>
+    {% endfor %}
+</div>
+{% endblock side %}
+
+{% block content %}
+<div class="col-sm-10 ml-5">
+<br><br>
+    <h2>Family members </h2>
+    {% if members %}
+    <table>
+        <tr>
+            <th>Name&emsp;</th>
+            <th>Gender&emsp;</th>
+            <th>Birth date&emsp;</th>
+            <th>Blood group&emsp;</th>
+            <th>Allergy&emsp;</th>
+        </tr>
+        {% for mem in members %}
+        <tr>
+            <td>{{mem.name}}&emsp;</td>
+            <td>{{mem.gender}}&emsp;</td>
+            <td>{{mem.birth_date}}&emsp;</td>
+            <td>{{mem.blood_group}}&emsp;</td>
+            <td>{{mem.allergy}}&emsp;&emsp;</td>
+            <td>
+                <a href= "/edit/{{mem.id}}"><span class = "btn btn-primary">Share</span>&emsp;</a>
+                <a href= "/delete/{{mem.id}}" class = "btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}<br>
+    </table>
+    {% else %}
+    <h1>NO data</h1>
+    {% endif %}<br>
+
+<br><br>
+    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+        <a href="{% url 'add' %}" class="btn btn-success active" aria-current="page">Add family member</a>&nbsp;&nbsp;
+        <a href="{% url 'view' %}" class="btn btn-primary active" aria-current="page">Share profile</a>&nbsp;&nbsp;
+    </div>
+
+
+</div>
+{% endblock content %}

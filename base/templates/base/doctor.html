@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Doctor{% endblock title %}
+{% block side %}
+<div class="col-sm-2 text-dark text-center">
+    <h4 class="my-5">Profile</h4>
+    <h5>{{full_name}}</h5>
+    {% for group in groups %}
+        <p>{{group.name}}</p>
+    {% endfor %}
+</div>
+{% endblock side %}
+
+{% block content %}
+<body oncopy="return false" oncut="return false" onpaste="return false">
+<br><br><br><br><br> 
+<form method = "POST">
+{% csrf_token %}
+    <div class="mb-3">
+        <label for="user_otp" class="form-label">Enter otp</label>
+        <input type="number" class="form-control" id="user_otp" name = "user_otp" placeholder="xxxx">
+    </div>
+    <center><button class="btn btn-primary" type="submit">Submit</button></center>
+</form>
+{% endblock content %}

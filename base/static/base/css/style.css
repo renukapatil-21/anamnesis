@@ -1,0 +1,16 @@
+body{
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}
+
+.form-control{
+    background-color: rgb(255, 255, 255);
+}
+
+.jumbo-color{
+    background-color: rgb(255, 255, 255);
+}
+
+.navbar-nav>li{
+    border-right: 1px solid #000;
+}

@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+{% block content %}
+<div class="col-sm-10 ml-5">
+    <h3 class="text-dark my-5"><b>Home Page</b></h3>
+    Anamnesis an app for everyone to store and share their medical record<br>
+    <img alt="Qries" src="/static/base/img/home.jpg"
+         width=900 height=500><br>
+    {% comment %}
+    
+     {% for post in posts %}
+            <div class="jumbotron jumbotron-fluid jumbo-color">
+                <div class="container">
+                    <h1 class="display-4 font-weight-bold">{{post.title}}</h1>
+                    <p class="lead">
+                    <div class="20">{{post.desc}}</div>
+                    </p>
+                </div>
+            </div>
+    {% endfor %}         {% endcomment %}
+</div>
+
+
+{% endblock content %}

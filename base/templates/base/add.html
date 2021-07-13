@@ -1,0 +1,93 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Add members{% endblock title %}
+{% block msg %}
+    {% if messages %}
+        {% for message in messages %}
+            <div {% if message.tags %} class="alert alert-{{message.tags}} alert-dismissible fade show"{% endif %}>
+                <strong>{{message}}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% endblock %}
+
+
+{% block side %}
+<div class="col-sm-2 text-dark text-center">
+    <h4 class="my-5">Profile</h4>
+    <h5>{{full_name}}&emsp;</h5>
+    {% for group in groups %}
+        <p>{{group.name}}&emsp;</p>
+    {% endfor %}
+</div>
+{% endblock side %}
+
+
+{% block content %}
+
+<form method = "POST">
+{% csrf_token %}
+    <div class="container">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="user_name" name= "user_name" placeholder="Enter name">
+        </div> 
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Gender</label>
+            <label for="user_gender"></label>
+                <select name="user_gender" id="user_gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="user_birthday" class="form-label">Birth date: </label>
+            <input type="date" id="user_birthday" name="user_birthday"> 
+        </div>
+        
+        <div class="mb-3">
+            <label for="user_phone" class="form-label">Phone number</label>
+            <input type="phone" class="form-control" id="user_phone" name = "user_phone" placeholder="xxxx-xxx-xxx">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Blood group</label>
+            <label for="user_blood_group"></label>
+                <select name="user_blood_group" id="user_blood_group">
+                    <option value="NaN">NaN</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB+">AB+</option>
+                </select>
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Allergy</label>
+            <input type="text" class="form-control" id="user_allergy" name= "user_allergy" placeholder="Enter allergy (if any have)">
+        </div>
+
+        <div class="form-group">
+            <label for="dsc" class="form-label">Any previous major operation</label>
+            <textarea class="form-control" id="user_major_operation" rows="3" name = "user_major_operation"></textarea>
+        </div>
+        <div>
+            <label for="myfile">File for previous record:</label>
+            <input type="file" id="myfile" name="myfile"> 
+        </div>
+        <br>
+        <center><button class="btn btn-primary" type="submit">Submit</button></center>
+    </div>
+</form>
+
+
+{% endblock content %}

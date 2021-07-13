@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Doctor{% endblock title %}
+{% block side %}
+<div class="col-sm-2 text-dark text-center">
+    <h4 class="my-5">Profile</h4>
+    <h5>{{full_name}}</h5>
+    {% for group in groups %}
+    <p>{{group.name}}</p>
+    {% endfor %}
+</div>
+{% endblock side %}
+
+{% block content %}
+
+<body oncopy="return false" oncut="return false" onpaste="return false">
+    <br><br>
+    <div class="col-sm-10 ml-5">
+        {% if members %}
+        <h2>Family members </h2>
+        <table>
+            <tr>
+                <th>Name&emsp;</th>
+                <th>Gender&emsp;</th>
+                <th>Birth date&emsp;</th>
+                <th>Blood group&emsp;</th>
+                <th>Allergy&emsp;</th>
+                <th>Major operations&emsp;</th>
+            </tr>
+            {% for mem in members %}
+            <tr>
+                <td>{{mem.name}}&emsp;</td>
+                <td>{{mem.gender}}&emsp;</td>
+                <td>{{mem.birth_date}}&emsp;</td>
+                <td>{{mem.blood_group}}&emsp;</td>
+                <td>{{mem.allergy}}&emsp;&emsp;</td>
+                <td>{{mem.major_operation}}&emsp;&emsp;</td>
+            </tr>
+            {% endfor %}<br>
+        </table>
+        {% else %}
+        <h1>No data</h1>
+        {% endif %}<br>
+
+        {% endblock content%}
